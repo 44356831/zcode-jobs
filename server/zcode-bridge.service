@@ -1,0 +1,15 @@
+[Unit]
+Description=zcode-bridge: Git <-> ZCode(Feishu) relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/zcode-bridge.env
+ExecStart=/usr/bin/python3 /opt/zcode-relay/repo/server/zcode-bridge.py
+Restart=always
+RestartSec=10
+MemoryMax=128M
+
+[Install]
+WantedBy=multi-user.target
